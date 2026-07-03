@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Match Result{% endblock %}
+{% block content %}
+{% set circumference = 339.292 %}
+{% set offset = circumference - (circumference * score / 100) %}
+{% set tier = 'high' if score >= 75 else ('mid' if score >= 50 else 'low') %}
+
+<section class="result-grid">
+    <div class="card gauge-card">
+        <p class="eyebrow">{{ filename }}</p>
+        <div class="gauge">
+            <svg viewBox="0 0 120 120" class="gauge-svg">
+                <circle class="gauge-track" cx="60" cy="60" r="54" />
+                <circle
+                    class="gauge-fill gauge-fill--{{ tier }}"
+                    cx="60" cy="60" r="54"
+                    stroke-dasharray="{{ circumference }}"
+                    stroke-dashoffset="{{ offset }}"
+                />
+            </svg>
+            <div class="gauge-label">
+                <span class="gauge-score">{{ score }}</span>
+                <span class="gauge-percent">%</span>
+            </div>
+        </div>
+        <p class="gauge-caption gauge-caption--{{ tier }}">
+            {% if tier == 'high' %}Strong match
+            {% elif tier == 'mid' %}Partial match
+            {% else %}Weak match
+            {% endif %}
+        </p>
+        <a href="{{ url_for('index') }}" class="btn-secondary">Try another</a>
+    </div>
+
+    <div class="card skills-card">
+        <div class="skills-block">
+            <h2>Matched skills <span class="count">{{ matched_skills|length }}</span></h2>
+            {% if matched_skills %}
+                <ul class="chip-list">
+                    {% for skill in matched_skills %}
+                        <li class="chip chip--match">{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty-note">No overlapping skills detected.</p>
+            {% endif %}
+        </div>
+
+        <div class="skills-block">
+            <h2>Missing from resume <span class="count">{{ missing_skills|length }}</span></h2>
+            {% if missing_skills %}
+                <ul class="chip-list">
+                    {% for skill in missing_skills %}
+                        <li class="chip chip--missing">{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty-note">Every skill mentioned in the job description was found.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

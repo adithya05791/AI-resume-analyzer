@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Analyze a Resume{% endblock %}
+{% block content %}
+<section class="hero">
+    <p class="eyebrow">Resume &times; Job Description</p>
+    <h1>How well does this resume fit the role?</h1>
+    <p class="lede">
+        Upload a resume and paste a job description. We'll extract skills from both,
+        show you what matches and what's missing, and score the overall fit.
+    </p>
+</section>
+
+<form class="card upload-form" action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data" id="analyze-form">
+    <div class="field">
+        <label for="resume">Resume (PDF, up to 5MB)</label>
+        <div class="dropzone" id="dropzone">
+            <input type="file" name="resume" id="resume" accept="application/pdf" required>
+            <span class="dropzone-text" id="dropzone-text">Drop a PDF here, or click to browse</span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="jobdesc">Job description</label>
+        <textarea name="jobdesc" id="jobdesc" rows="10" placeholder="Paste the job posting text here…" required></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary" id="submit-btn">
+        <span class="btn-label">Analyze match</span>
+    </button>
+</form>
+{% endblock %}
