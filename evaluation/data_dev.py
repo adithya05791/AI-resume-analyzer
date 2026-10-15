@@ -1,0 +1,17 @@
+EVAL_CASES = [
+    ("Designed & developed an AI-powered resume analyzer using Python and Flask", {"Python", "Flask", "Artificial Intelligence"}),
+    ("Experience with JavaScript and React", {"JavaScript", "React"}),
+    ("Deployed containers with Docker on k8s", {"Docker", "Kubernetes"}),
+    ("Strong knowledge of NoSQL databases", set()),
+    ("Worked with PostgreSQL and MySQL", {"SQL"}),
+    ("Used Postgres for the backend", {"SQL"}),
+    ("Applied ML models for classification", {"Machine Learning"}),
+    ("Java developer with Spring Boot experience", {"Java", "Spring Boot"}),
+    ("Version control with Git and GitHub", {"Git"}),
+    ("Learned python in college", {"Python"}),
+    ("Used Node.js and Express", {"Node.js"}),
+    ("Built a chatbot using TensorFlow", {"TensorFlow"}),
+    ("Frontend built with Angular", {"Angular"}),
+    ("Team player with good communication", set()),
+    ("Created ETL pipelines in Python and SQL", {"Python", "SQL"}),
+]
