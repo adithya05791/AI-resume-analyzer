@@ -25,7 +25,7 @@ for _skill, _aliases in SKILL_ALIASES.items():
 
 def extract_skills(text: str) -> set:
     """Find skills in text; when matches overlap, keep the longest one."""
-    doc = nlp(text)
+    doc = nlp(" ".join(text.split()))
     spans = [
         Span(doc, start, end, label=match_id)
         for match_id, start, end in _matcher(doc)
