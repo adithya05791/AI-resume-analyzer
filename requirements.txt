@@ -1,4 +1,6 @@
 streamlit
 pdfplumber
+PyMuPDF
 scikit-learn
+spacy
 pytest
